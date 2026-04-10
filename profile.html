@@ -8,16 +8,17 @@
 
 <div class="topbar">
   <h2>Profile</h2>
+  <a href="discover.html">Back</a>
 </div>
 
 <div class="profile">
-  <h2 id="user"></h2>
-  <p>AI Model: Active</p>
+  <h3 id="user"></h3>
+  <p>AI Preference Model: Active</p>
 </div>
 
 <script>
 document.getElementById("user").innerText =
-  localStorage.getItem("user");
+  localStorage.getItem("user") || "Guest";
 </script>
 
 </body>
