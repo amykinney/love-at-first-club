@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Saved - Love at First Club</title>
+  <title>Saved</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
 const saved = JSON.parse(localStorage.getItem("saved") || "[]");
 
 document.getElementById("savedList").innerHTML =
-  saved.map(c => `<div class="saved-card">${c}</div>`).join("");
+  saved.map(s => `<div class="saved-card">${s}</div>`).join("");
 </script>
 
 </body>
