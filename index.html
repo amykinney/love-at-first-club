@@ -12,25 +12,54 @@
     <!-- Header -->
     <div class="header">
       <h1>Love at First Club</h1>
-      <p>Less swiping, more belonging.</p>
+      <p>AI-powered club discovery (wireframe demo)</p>
     </div>
 
-    <!-- Card -->
-    <div class="card" id="card">
-      <img id="club-image" src="" alt="club">
-      <div class="match-badge" id="match">95% Match</div>
+    <!-- Main Layout -->
+    <div class="layout">
 
-      <div class="card-content">
-        <h2 id="club-name"></h2>
-        <p class="category" id="club-category"></p>
-        <p id="club-description"></p>
+      <!-- Card Stack -->
+      <div class="stack" id="stack">
 
-        <div class="info">
-          <p id="club-time"></p>
-          <p id="club-location"></p>
-          <p id="club-members"></p>
+        <div class="card" id="card">
+          <img id="club-image" src="" alt="club">
+
+          <div class="match-badge" id="match">AI Match: 95%</div>
+
+          <div class="card-content">
+            <h2 id="club-name"></h2>
+            <p class="category" id="club-category"></p>
+            <p id="club-description"></p>
+
+            <div class="info">
+              <p id="club-time"></p>
+              <p id="club-location"></p>
+              <p id="club-members"></p>
+            </div>
+
+            <!-- AI Explanation (FAKE but convincing) -->
+            <div class="ai-box">
+              <h4>AI Insight</h4>
+              <p id="ai-reason">Analyzing your interests...</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Side Panel -->
+      <div class="panel">
+        <h3>Your Activity</h3>
+        <p>❤️ Liked: <span id="liked-count">0</span></p>
+        <p>❌ Passed: <span id="passed-count">0</span></p>
+
+        <div class="saved">
+          <h4>Saved Clubs</h4>
+          <ul id="saved-list"></ul>
         </div>
       </div>
+
     </div>
 
     <!-- Buttons -->
