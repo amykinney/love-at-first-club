@@ -34,7 +34,6 @@ let passed = [];
 let currentFilter = "All";
 let searchQuery = "";
 
-/* FLOW START */
 function startAnalysis() {
   document.getElementById("onboarding").style.display = "none";
   document.getElementById("loading").style.display = "flex";
@@ -47,7 +46,6 @@ function startAnalysis() {
   }, 2000);
 }
 
-/* AI */
 function aiScore(club) {
   let score = 70;
   if (club.category === "Technology") score += 15;
@@ -56,10 +54,9 @@ function aiScore(club) {
 }
 
 function aiReason(club) {
-  return `Matches your schedule availability and interest in ${club.category}.`;
+  return `Recommended based on your interest in ${club.category} and schedule fit analysis.`;
 }
 
-/* LOAD */
 function loadClub() {
   let filtered = clubs.filter(c =>
     (currentFilter === "All" || c.category === currentFilter) &&
@@ -82,9 +79,10 @@ function loadClub() {
 
   document.getElementById("match").innerText = `AI Match: ${aiScore(club)}%`;
   document.getElementById("ai-reason").innerText = aiReason(club);
+
+  updatePanel();
 }
 
-/* SWIPE */
 function swipe(like) {
   const club = clubs[index];
 
@@ -96,7 +94,6 @@ function swipe(like) {
   updatePanel();
 }
 
-/* PANEL */
 function updatePanel() {
   document.getElementById("liked-count").innerText = liked.length;
   document.getElementById("passed-count").innerText = passed.length;
@@ -105,9 +102,8 @@ function updatePanel() {
     liked.map(c => `<li>${c}</li>`).join("");
 }
 
-/* FILTER */
-function setFilter(filter) {
-  currentFilter = filter;
+function setFilter(f) {
+  currentFilter = f;
   index = 0;
   loadClub();
 }
@@ -116,4 +112,8 @@ function filterClubs() {
   searchQuery = document.getElementById("search").value.toLowerCase();
   index = 0;
   loadClub();
+}
+
+function explainMatch() {
+  alert("AI Analysis: This club aligns with your behavioral preference cluster.");
 }
