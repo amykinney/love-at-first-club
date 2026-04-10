@@ -2,67 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Love at First Club</title>
+  <title>ClubMatch AI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="app">
+<!-- TOP NAVBAR -->
+<div class="navbar">
+  <div class="logo">ClubMatch AI</div>
 
-    <!-- Header -->
+  <div class="nav-links">
+    <a href="#">Discover</a>
+    <a href="#">Matches</a>
+    <a href="#">Saved</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="login-btn">Log In</button>
+    <div class="avatar">A</div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3>Dashboard</h3>
+
+    <ul>
+      <li>🏠 Home</li>
+      <li>🔥 Trending Clubs</li>
+      <li>❤️ Your Matches</li>
+      <li>📌 Saved Clubs</li>
+      <li>⚙️ Settings</li>
+    </ul>
+
+    <div class="sidebar-box">
+      <h4>AI Status</h4>
+      <p>Learning your preferences...</p>
+      <div class="fake-bar"></div>
+    </div>
+  </div>
+
+  <!-- MAIN FEED -->
+  <div class="main">
+
     <div class="header">
-      <h1>Love at First Club</h1>
-      <p>AI-powered club discovery (wireframe demo)</p>
+      <h1>Find Your Next Club Match</h1>
+      <p>AI-powered recommendations (demo wireframe)</p>
     </div>
 
-    <!-- Main Layout -->
-    <div class="layout">
+    <!-- CARD -->
+    <div class="card" id="card">
+      <img id="club-image" src="" />
 
-      <!-- Card Stack -->
-      <div class="stack" id="stack">
+      <div class="match-badge" id="match">AI Match: 95%</div>
 
-        <div class="card" id="card">
-          <img id="club-image" src="" alt="club">
+      <div class="card-content">
+        <h2 id="club-name"></h2>
+        <p class="category" id="club-category"></p>
+        <p id="club-description"></p>
 
-          <div class="match-badge" id="match">AI Match: 95%</div>
-
-          <div class="card-content">
-            <h2 id="club-name"></h2>
-            <p class="category" id="club-category"></p>
-            <p id="club-description"></p>
-
-            <div class="info">
-              <p id="club-time"></p>
-              <p id="club-location"></p>
-              <p id="club-members"></p>
-            </div>
-
-            <!-- AI Explanation (FAKE but convincing) -->
-            <div class="ai-box">
-              <h4>AI Insight</h4>
-              <p id="ai-reason">Analyzing your interests...</p>
-            </div>
-
-          </div>
+        <div class="info">
+          <p id="club-time"></p>
+          <p id="club-location"></p>
+          <p id="club-members"></p>
         </div>
 
-      </div>
-
-      <!-- Side Panel -->
-      <div class="panel">
-        <h3>Your Activity</h3>
-        <p>❤️ Liked: <span id="liked-count">0</span></p>
-        <p>❌ Passed: <span id="passed-count">0</span></p>
-
-        <div class="saved">
-          <h4>Saved Clubs</h4>
-          <ul id="saved-list"></ul>
+        <div class="ai-box">
+          <h4>AI Insight</h4>
+          <p id="ai-reason"></p>
         </div>
       </div>
-
     </div>
 
-    <!-- Buttons -->
+    <!-- BUTTONS -->
     <div class="buttons">
       <button class="no" onclick="swipe(false)">✖</button>
       <button class="yes" onclick="swipe(true)">❤</button>
@@ -70,6 +85,26 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <!-- RIGHT PANEL -->
+  <div class="panel">
+    <h3>Your Activity</h3>
+
+    <p>❤️ Liked: <span id="liked-count">0</span></p>
+    <p>❌ Passed: <span id="passed-count">0</span></p>
+
+    <div class="saved">
+      <h4>Saved Clubs</h4>
+      <ul id="saved-list"></ul>
+    </div>
+
+    <div class="panel-box">
+      <h4>AI Summary</h4>
+      <p>We’re optimizing recommendations based on your swipes.</p>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
