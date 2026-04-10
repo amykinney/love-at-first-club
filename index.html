@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love at First Club</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>Love at First Club</h1>
+      <p>Less swiping, more belonging.</p>
+    </div>
+
+    <!-- Card -->
+    <div class="card" id="card">
+      <img id="club-image" src="" alt="club">
+      <div class="match-badge" id="match">95% Match</div>
+
+      <div class="card-content">
+        <h2 id="club-name"></h2>
+        <p class="category" id="club-category"></p>
+        <p id="club-description"></p>
+
+        <div class="info">
+          <p id="club-time"></p>
+          <p id="club-location"></p>
+          <p id="club-members"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="no" onclick="swipe(false)">✖</button>
+      <button class="yes" onclick="swipe(true)">❤</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
