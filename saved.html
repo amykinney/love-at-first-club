@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Saved - Love at First Club</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <h2>Saved Clubs</h2>
+  <a href="discover.html">Back</a>
+</div>
+
+<div id="savedList"></div>
+
+<script>
+const saved = JSON.parse(localStorage.getItem("saved") || "[]");
+
+document.getElementById("savedList").innerHTML =
+  saved.map(c => `<div class="saved-card">${c}</div>`).join("");
+</script>
+
+</body>
+</html>
