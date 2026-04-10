@@ -1,80 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Discover | Love at First Club</title>
+  <title>Discover - Love at First Club</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- TOP NAV -->
 <div class="topbar">
-  <div class="logo">Love at First Club</div>
-
-  <div class="nav">
+  <h2>Love at First Club</h2>
+  <div>
     <a href="discover.html">Discover</a>
     <a href="saved.html">Saved</a>
     <a href="profile.html">Profile</a>
   </div>
 </div>
 
-<div class="layout">
+<div class="app-grid">
 
-  <!-- AI CHAT -->
-  <div class="ai-panel">
+  <!-- SIDEBAR AI CHAT -->
+  <div class="chat">
     <h3>AI Assistant</h3>
     <div id="chatBox"></div>
     <input id="chatInput" placeholder="Ask why this match...">
     <button onclick="sendChat()">Send</button>
   </div>
 
-  <!-- MAIN CARD -->
-  <div class="main">
-
-    <div class="hero">
-      <h1>Your Recommended Clubs</h1>
-      <p>AI-curated based on your schedule & interests</p>
-    </div>
+  <!-- MAIN SWIPE -->
+  <div class="swipe-area">
 
     <div class="card" id="card">
-      <div class="badge" id="match">AI Match</div>
       <img id="img">
+      <h2 id="name"></h2>
+      <p id="desc"></p>
 
-      <div class="content">
-        <h2 id="name"></h2>
-        <p id="desc"></p>
-
-        <div class="meta">
-          <span id="time"></span>
-          <span id="location"></span>
-        </div>
-
-        <button class="ai-btn" onclick="askAI()">
-          Why was this recommended?
-        </button>
+      <div class="meta">
+        <p id="time"></p>
+        <p id="location"></p>
       </div>
+
+      <div class="match" id="match"></div>
     </div>
 
     <div class="buttons">
-      <button class="no" onclick="swipe(false)">✖</button>
-      <button class="yes" onclick="swipe(true)">❤</button>
+      <button onclick="swipe(false)">✖</button>
+      <button onclick="swipe(true)">❤</button>
     </div>
 
   </div>
 
   <!-- RIGHT PANEL -->
-  <div class="side">
+  <div class="panel">
     <h3>Your Stats</h3>
     <p>❤️ <span id="likes">0</span></p>
     <p>❌ <span id="passes">0</span></p>
-
-    <div class="box">
-      <h4>🔥 Trending</h4>
-      <p>AI & Tech clubs are booming this week</p>
-    </div>
   </div>
 
 </div>
 
-<script src="app.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
