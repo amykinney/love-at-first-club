@@ -1,123 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>ClubMatch AI</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+const clubs = [
+  {
+    name: "Outdoor Adventure Club",
+    category: "Recreation",
+    description: "Explore hiking, camping, and outdoor fun.",
+    time: "Thursdays, 6:00 PM",
+    location: "Student Union, Room 204",
+    members: "45 active members",
+    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    name: "AI & Tech Society",
+    category: "Technology",
+    description: "Build cool projects and learn AI.",
+    time: "Wednesdays, 7:00 PM",
+    location: "Engineering Hall",
+    members: "60 active members",
+    image: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    name: "Art Collective",
+    category: "Creative",
+    description: "Paint, draw, and express creativity.",
+    time: "Mondays, 5:00 PM",
+    location: "Art Studio",
+    members: "30 active members",
+    image: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?auto=format&fit=crop&w=1200&q=80",
+  }
+];
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">ClubMatch AI</div>
+let index = 0;
+let liked = [];
+let passed = [];
+let currentFilter = "All";
+let searchQuery = "";
 
-  <div class="nav-links">
-    <a href="#">Discover</a>
-    <a href="#">Matches</a>
-    <a href="#">Saved</a>
-  </div>
+function aiScore(club) {
+  let score = 70;
 
-  <div class="nav-right">
-    <button class="login-btn">Log In</button>
-    <div class="avatar">A</div>
-  </div>
-</div>
+  if (club.category === "Technology") score += 15;
+  if (club.name.includes("AI")) score += 10;
+  if (club.members.includes("60")) score += 5;
 
-<!-- LAYOUT -->
-<div class="layout">
+  return Math.min(score, 99);
+}
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h3>Dashboard</h3>
+function aiReason(club) {
+  return `Based on behavioral clustering, users with similar interests in ${club.category} showed high engagement.`;
+}
 
-    <ul>
-      <li>🏠 Home</li>
-      <li>🔥 Trending</li>
-      <li>❤️ Matches</li>
-      <li>📌 Saved</li>
-      <li>⚙️ Settings</li>
-    </ul>
+function loadClub() {
+  let filtered = clubs.filter(c => {
+    return (currentFilter === "All" || c.category === currentFilter) &&
+      c.name.toLowerCase().includes(searchQuery);
+  });
 
-    <div class="sidebar-box">
-      <h4>AI Status</h4>
-      <p>Learning your preferences...</p>
-      <div class="fake-bar"></div>
-    </div>
-  </div>
+  if (filtered.length === 0) return;
 
-  <!-- MAIN -->
-  <div class="main">
+  if (index >= filtered.length) index = 0;
 
-    <div class="header">
-      <h1>Find Your Next Club Match</h1>
-      <p>AI-powered recommendations (wireframe demo)</p>
-    </div>
+  const club = filtered[index];
 
-    <div class="controls">
-      <input type="text" id="search" placeholder="Search clubs..." oninput="filterClubs()">
+  document.getElementById("club-name").innerText = club.name;
+  document.getElementById("club-category").innerText = club.category;
+  document.getElementById("club-description").innerText = club.description;
+  document.getElementById("club-time").innerText = "🕒 " + club.time;
+  document.getElementById("club-location").innerText = "📍 " + club.location;
+  document.getElementById("club-members").innerText = "👥 " + club.members;
+  document.getElementById("club-image").src = club.image;
 
-      <div class="filters">
-        <button onclick="setFilter('All')">All</button>
-        <button onclick="setFilter('Technology')">Tech</button>
-        <button onclick="setFilter('Recreation')">Recreation</button>
-        <button onclick="setFilter('Creative')">Creative</button>
-      </div>
-    </div>
+  document.getElementById("match").innerText = `AI Match: ${aiScore(club)}%`;
+  document.getElementById("ai-reason").innerText = aiReason(club);
 
-    <div class="card" id="card">
-      <img id="club-image" src="" />
+  updatePanel();
+}
 
-      <div class="match-badge" id="match">AI Match</div>
+function swipe(like) {
+  const club = clubs[index];
 
-      <div class="card-content">
-        <h2 id="club-name"></h2>
-        <p class="category" id="club-category"></p>
-        <p id="club-description"></p>
+  if (like) liked.push(club.name);
+  else passed.push(club.name);
 
-        <div class="info">
-          <p id="club-time"></p>
-          <p id="club-location"></p>
-          <p id="club-members"></p>
-        </div>
+  index++;
+  loadClub();
+}
 
-        <div class="ai-box">
-          <h4>AI Insight</h4>
-          <p id="ai-reason"></p>
-        </div>
+function updatePanel() {
+  document.getElementById("liked-count").innerText = liked.length;
+  document.getElementById("passed-count").innerText = passed.length;
 
-        <button class="ai-btn" onclick="explainMatch()">
-          Ask AI: Why this match?
-        </button>
-      </div>
-    </div>
+  document.getElementById("saved-list").innerHTML =
+    liked.map(c => `<li>${c}</li>`).join("");
+}
 
-    <div class="buttons">
-      <button class="no" onclick="swipe(false)">✖</button>
-      <button class="yes" onclick="swipe(true)">❤</button>
-    </div>
+function setFilter(filter) {
+  currentFilter = filter;
+  index = 0;
+  loadClub();
+}
 
-  </div>
+function filterClubs() {
+  searchQuery = document.getElementById("search").value.toLowerCase();
+  index = 0;
+  loadClub();
+}
 
-  <!-- RIGHT PANEL -->
-  <div class="panel">
-    <h3>Your Activity</h3>
+function explainMatch() {
+  alert("AI Insight: This club matches your engagement history and category preferences.");
+}
 
-    <p>❤️ Liked: <span id="liked-count">0</span></p>
-    <p>❌ Passed: <span id="passed-count">0</span></p>
-
-    <div class="saved">
-      <h4>Saved Clubs</h4>
-      <ul id="saved-list"></ul>
-    </div>
-
-    <div class="panel-box">
-      <h4>🔥 Trending AI Insight</h4>
-      <p>AI Clubs are trending among students this week.</p>
-    </div>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+loadClub();
+updatePanel();
