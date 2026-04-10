@@ -2,32 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ClubMatch AI</title>
+  <title>Love at First Club</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ONBOARDING SCREEN -->
+<!-- ONBOARDING -->
 <div class="onboarding" id="onboarding">
 
   <div class="onboarding-card">
-    <h1>Welcome to ClubMatch AI</h1>
-    <p>Upload your class schedule to find clubs that fit your free time.</p>
+    <h1>Love at First Club</h1>
+    <p class="tagline">Less Swiping, More Belonging.</p>
+
+    <p class="subtext">
+      Upload your class schedule and discover clubs that actually fit your life.
+    </p>
 
     <button class="upload-btn" onclick="startAnalysis()">
       Upload Class Schedule
     </button>
 
-    <p class="small">We’ll simulate AI analysis (wireframe mode)</p>
+    <p class="small">AI will match clubs based on your availability (demo mode)</p>
   </div>
 
 </div>
 
-<!-- LOADING SCREEN -->
+<!-- LOADING -->
 <div class="loading-screen" id="loading">
   <h2>AI is analyzing your schedule...</h2>
   <div class="loader"></div>
-  <p>Matching free time with club availability</p>
+  <p>Finding the best club matches for you</p>
 </div>
 
 <!-- APP -->
@@ -35,7 +39,7 @@
 
   <!-- NAVBAR -->
   <div class="navbar">
-    <div class="logo">ClubMatch AI</div>
+    <div class="logo">Love at First Club</div>
 
     <div class="nav-links">
       <a href="#">Discover</a>
@@ -50,30 +54,37 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar">
+
       <h3>Dashboard</h3>
 
-      <ul>
-        <li>🏠 Home</li>
-        <li>🔥 Recommended</li>
-        <li>❤️ Matches</li>
-        <li>📌 Saved</li>
-      </ul>
+      <div class="sidebar-section">
+        <p class="sidebar-title">Navigation</p>
+        <ul>
+          <li>🏠 Home</li>
+          <li>🔥 Recommended</li>
+          <li>❤️ Matches</li>
+          <li>📌 Saved Clubs</li>
+        </ul>
+      </div>
 
       <div class="sidebar-box">
-        <h4>AI Status</h4>
-        <p>Processing schedule...</p>
+        <h4>AI Engine</h4>
+        <p>Learning your preferences...</p>
         <div class="fake-bar"></div>
       </div>
+
     </div>
 
     <!-- MAIN -->
     <div class="main">
 
-      <div class="header">
+      <!-- HERO HEADER -->
+      <div class="hero">
         <h1>Your Recommended Clubs</h1>
-        <p>Based on your schedule + interests</p>
+        <p>Personalized for your schedule, interests, and campus activity patterns</p>
       </div>
 
+      <!-- CONTROLS -->
       <div class="controls">
         <input type="text" id="search" placeholder="Search clubs..." oninput="filterClubs()">
 
@@ -85,17 +96,26 @@
         </div>
       </div>
 
+      <!-- RECOMMENDED SECTION LABEL -->
+      <div class="section-label">
+        <h3>🔥 Top AI Recommendations</h3>
+        <p>Ranked based on predicted engagement + schedule fit</p>
+      </div>
+
+      <!-- CARD -->
       <div class="card">
-        <img id="club-image">
 
         <div class="match-badge" id="match">AI Match</div>
 
+        <img id="club-image">
+
         <div class="card-content">
+
           <h2 id="club-name"></h2>
           <p class="category" id="club-category"></p>
           <p id="club-description"></p>
 
-          <div class="info">
+          <div class="meta-grid">
             <p id="club-time"></p>
             <p id="club-location"></p>
             <p id="club-members"></p>
@@ -105,9 +125,15 @@
             <h4>AI Insight</h4>
             <p id="ai-reason"></p>
           </div>
+
+          <button class="ai-btn" onclick="explainMatch()">
+            Why was this recommended?
+          </button>
+
         </div>
       </div>
 
+      <!-- ACTION BUTTONS -->
       <div class="buttons">
         <button class="no" onclick="swipe(false)">✖</button>
         <button class="yes" onclick="swipe(true)">❤</button>
@@ -115,12 +141,15 @@
 
     </div>
 
-    <!-- PANEL -->
+    <!-- RIGHT PANEL -->
     <div class="panel">
+
       <h3>Your Activity</h3>
 
-      <p>❤️ Liked: <span id="liked-count">0</span></p>
-      <p>❌ Passed: <span id="passed-count">0</span></p>
+      <div class="stats">
+        <p>❤️ Liked: <span id="liked-count">0</span></p>
+        <p>❌ Passed: <span id="passed-count">0</span></p>
+      </div>
 
       <div class="saved">
         <h4>Saved Clubs</h4>
@@ -128,9 +157,17 @@
       </div>
 
       <div class="panel-box">
-        <h4>AI Insight</h4>
-        <p>Optimizing recommendations based on your schedule.</p>
+        <h4>📊 AI Insight</h4>
+        <p>
+          Your preferences are strongest in Technology + Creative communities.
+        </p>
       </div>
+
+      <div class="panel-box highlight">
+        <h4>🔥 Trending Now</h4>
+        <p>AI & Tech clubs are seeing 32% higher engagement this week.</p>
+      </div>
+
     </div>
 
   </div>
