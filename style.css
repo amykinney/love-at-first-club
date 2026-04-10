@@ -4,7 +4,7 @@ body {
   background: #f6f7fb;
 }
 
-/* TOP NAVBAR */
+/* NAVBAR */
 .navbar {
   height: 60px;
   background: white;
@@ -20,7 +20,6 @@ body {
 
 .logo {
   font-weight: bold;
-  font-size: 18px;
 }
 
 .nav-links a {
@@ -54,7 +53,7 @@ body {
   justify-content: center;
 }
 
-/* MAIN LAYOUT */
+/* LAYOUT */
 .layout {
   display: grid;
   grid-template-columns: 220px 1fr 280px;
@@ -65,8 +64,8 @@ body {
 /* SIDEBAR */
 .sidebar {
   background: white;
-  border-radius: 15px;
   padding: 15px;
+  border-radius: 15px;
   height: fit-content;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
@@ -78,22 +77,7 @@ body {
 
 .sidebar li {
   padding: 8px 0;
-  color: #444;
   cursor: pointer;
-}
-
-.sidebar-box {
-  margin-top: 20px;
-  padding: 10px;
-  background: #f0f0ff;
-  border-radius: 10px;
-}
-
-.fake-bar {
-  height: 8px;
-  background: linear-gradient(90deg, #ff2d78, #7a5cff);
-  border-radius: 10px;
-  margin-top: 10px;
 }
 
 /* MAIN */
@@ -109,7 +93,35 @@ body {
   color: white;
   padding: 20px;
   border-radius: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+/* CONTROLS */
+.controls {
+  width: 100%;
+  max-width: 450px;
+  margin-bottom: 10px;
+}
+
+.controls input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.filters button {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #eee;
 }
 
 /* CARD */
@@ -145,28 +157,32 @@ body {
   font-weight: bold;
 }
 
+/* AI */
 .ai-box {
   margin-top: 10px;
   background: #f3f3ff;
   padding: 10px;
   border-radius: 10px;
-  border-left: 4px solid #7a5cff;
+}
+
+.ai-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #7a5cff;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 /* PANEL */
 .panel {
   background: white;
-  border-radius: 15px;
   padding: 15px;
+  border-radius: 15px;
   height: fit-content;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.panel-box {
-  margin-top: 20px;
-  padding: 10px;
-  background: #f7f7f7;
-  border-radius: 10px;
 }
 
 /* BUTTONS */
@@ -193,4 +209,12 @@ button {
 .yes {
   background: #ff2d78;
   color: white;
+}
+
+/* SIDEBAR ANIMATION BAR */
+.fake-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #ff2d78, #7a5cff);
+  border-radius: 10px;
+  margin-top: 10px;
 }
