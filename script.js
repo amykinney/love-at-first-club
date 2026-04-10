@@ -6,8 +6,7 @@ const clubs = [
     time: "Thursdays, 6:00 PM",
     location: "Student Union, Room 204",
     members: "45 active members",
-    image: "https://source.unsplash.com/400x300/?nature",
-    match: "95% Match"
+    image: "https://source.unsplash.com/800x500/?nature",
   },
   {
     name: "AI & Tech Society",
@@ -16,8 +15,7 @@ const clubs = [
     time: "Wednesdays, 7:00 PM",
     location: "Engineering Hall",
     members: "60 active members",
-    image: "https://source.unsplash.com/400x300/?technology",
-    match: "92% Match"
+    image: "https://source.unsplash.com/800x500/?technology",
   },
   {
     name: "Art Collective",
@@ -26,17 +24,45 @@ const clubs = [
     time: "Mondays, 5:00 PM",
     location: "Art Studio",
     members: "30 active members",
-    image: "https://source.unsplash.com/400x300/?art",
-    match: "89% Match"
+    image: "https://source.unsplash.com/800x500/?art",
   }
 ];
 
 let index = 0;
+let liked = [];
+let passed = [];
+
+function aiScore(club) {
+  // FAKE AI LOGIC (but looks real)
+  let score = 70;
+
+  if (club.category === "Technology") score += 15;
+  if (club.members.includes("60")) score += 5;
+  if (club.name.includes("AI")) score += 10;
+
+  return Math.min(score, 99);
+}
+
+function aiReason(club) {
+  const reasons = [
+    `Matches your interest in ${club.category.toLowerCase()} communities.`,
+    `High engagement activity among similar students.`,
+    `Strong alignment with your past club interactions.`,
+    `Recommended based on skill-building potential.`
+  ];
+
+  return reasons[Math.floor(Math.random() * reasons.length)];
+}
 
 function loadClub() {
+  const card = document.getElementById("card");
+
   if (index >= clubs.length) {
-    document.getElementById("card").innerHTML =
-      "<h2 style='padding:20px;text-align:center;'>No more clubs 🎉</h2>";
+    card.innerHTML = `
+      <h2 style="padding:20px;text-align:center;">
+        🎉 You’ve explored all clubs!
+      </h2>
+    `;
     return;
   }
 
@@ -49,18 +75,47 @@ function loadClub() {
   document.getElementById("club-location").innerText = "📍 " + club.location;
   document.getElementById("club-members").innerText = "👥 " + club.members;
   document.getElementById("club-image").src = club.image;
-  document.getElementById("match").innerText = club.match;
+
+  const score = aiScore(club);
+  document.getElementById("match").innerText = `AI Match: ${score}%`;
+
+  document.getElementById("ai-reason").innerText = aiReason(club);
 }
 
-function swipe(liked) {
-  if (liked) {
-    console.log("Liked:", clubs[index].name);
+function updatePanel() {
+  document.getElementById("liked-count").innerText = liked.length;
+  document.getElementById("passed-count").innerText = passed.length;
+
+  const list = document.getElementById("saved-list");
+  list.innerHTML = liked.map(c => `<li>${c}</li>`).join("");
+}
+
+function swipe(like) {
+  const card = document.getElementById("card");
+  const club = clubs[index];
+
+  if (like) {
+    card.classList.add("swipe-right");
+    liked.push(club.name);
   } else {
-    console.log("Skipped:", clubs[index].name);
+    card.classList.add("swipe-left");
+    passed.push(club.name);
   }
 
-  index++;
-  loadClub();
+  updatePanel();
+
+  setTimeout(() => {
+    index++;
+    card.classList.remove("swipe-left", "swipe-right");
+    loadClub();
+  }, 300);
 }
 
+/* Keyboard support */
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") swipe(true);
+  if (e.key === "ArrowLeft") swipe(false);
+});
+
 loadClub();
+updatePanel();
