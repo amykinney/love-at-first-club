@@ -7,113 +7,132 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">ClubMatch AI</div>
+<!-- ONBOARDING SCREEN -->
+<div class="onboarding" id="onboarding">
 
-  <div class="nav-links">
-    <a href="#">Discover</a>
-    <a href="#">Matches</a>
-    <a href="#">Saved</a>
+  <div class="onboarding-card">
+    <h1>Welcome to ClubMatch AI</h1>
+    <p>Upload your class schedule to find clubs that fit your free time.</p>
+
+    <button class="upload-btn" onclick="startAnalysis()">
+      Upload Class Schedule
+    </button>
+
+    <p class="small">We’ll simulate AI analysis (wireframe mode)</p>
   </div>
 
-  <div class="nav-right">
-    <button class="login-btn">Log In</button>
-    <div class="avatar">A</div>
-  </div>
 </div>
 
-<!-- LAYOUT -->
-<div class="layout">
+<!-- LOADING SCREEN -->
+<div class="loading-screen" id="loading">
+  <h2>AI is analyzing your schedule...</h2>
+  <div class="loader"></div>
+  <p>Matching free time with club availability</p>
+</div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h3>Dashboard</h3>
+<!-- APP -->
+<div class="app" id="app">
 
-    <ul>
-      <li>🏠 Home</li>
-      <li>🔥 Trending</li>
-      <li>❤️ Matches</li>
-      <li>📌 Saved</li>
-      <li>⚙️ Settings</li>
-    </ul>
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="logo">ClubMatch AI</div>
 
-    <div class="sidebar-box">
-      <h4>AI Status</h4>
-      <p>Learning your preferences...</p>
-      <div class="fake-bar"></div>
+    <div class="nav-links">
+      <a href="#">Discover</a>
+      <a href="#">Matches</a>
+      <a href="#">Saved</a>
     </div>
+
+    <button class="login-btn">Log In</button>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
+  <div class="layout">
 
-    <div class="header">
-      <h1>Find Your Next Club Match</h1>
-      <p>AI-powered recommendations (wireframe demo)</p>
-    </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <h3>Dashboard</h3>
 
-    <div class="controls">
-      <input type="text" id="search" placeholder="Search clubs..." oninput="filterClubs()">
+      <ul>
+        <li>🏠 Home</li>
+        <li>🔥 Recommended</li>
+        <li>❤️ Matches</li>
+        <li>📌 Saved</li>
+      </ul>
 
-      <div class="filters">
-        <button onclick="setFilter('All')">All</button>
-        <button onclick="setFilter('Technology')">Tech</button>
-        <button onclick="setFilter('Recreation')">Recreation</button>
-        <button onclick="setFilter('Creative')">Creative</button>
+      <div class="sidebar-box">
+        <h4>AI Status</h4>
+        <p>Processing schedule...</p>
+        <div class="fake-bar"></div>
       </div>
     </div>
 
-    <div class="card" id="card">
-      <img id="club-image" src="" />
+    <!-- MAIN -->
+    <div class="main">
 
-      <div class="match-badge" id="match">AI Match</div>
+      <div class="header">
+        <h1>Your Recommended Clubs</h1>
+        <p>Based on your schedule + interests</p>
+      </div>
 
-      <div class="card-content">
-        <h2 id="club-name"></h2>
-        <p class="category" id="club-category"></p>
-        <p id="club-description"></p>
+      <div class="controls">
+        <input type="text" id="search" placeholder="Search clubs..." oninput="filterClubs()">
 
-        <div class="info">
-          <p id="club-time"></p>
-          <p id="club-location"></p>
-          <p id="club-members"></p>
+        <div class="filters">
+          <button onclick="setFilter('All')">All</button>
+          <button onclick="setFilter('Technology')">Tech</button>
+          <button onclick="setFilter('Recreation')">Recreation</button>
+          <button onclick="setFilter('Creative')">Creative</button>
         </div>
+      </div>
 
-        <div class="ai-box">
-          <h4>AI Insight</h4>
-          <p id="ai-reason"></p>
+      <div class="card">
+        <img id="club-image">
+
+        <div class="match-badge" id="match">AI Match</div>
+
+        <div class="card-content">
+          <h2 id="club-name"></h2>
+          <p class="category" id="club-category"></p>
+          <p id="club-description"></p>
+
+          <div class="info">
+            <p id="club-time"></p>
+            <p id="club-location"></p>
+            <p id="club-members"></p>
+          </div>
+
+          <div class="ai-box">
+            <h4>AI Insight</h4>
+            <p id="ai-reason"></p>
+          </div>
         </div>
+      </div>
 
-        <button class="ai-btn" onclick="explainMatch()">
-          Ask AI: Why this match?
-        </button>
+      <div class="buttons">
+        <button class="no" onclick="swipe(false)">✖</button>
+        <button class="yes" onclick="swipe(true)">❤</button>
+      </div>
+
+    </div>
+
+    <!-- PANEL -->
+    <div class="panel">
+      <h3>Your Activity</h3>
+
+      <p>❤️ Liked: <span id="liked-count">0</span></p>
+      <p>❌ Passed: <span id="passed-count">0</span></p>
+
+      <div class="saved">
+        <h4>Saved Clubs</h4>
+        <ul id="saved-list"></ul>
+      </div>
+
+      <div class="panel-box">
+        <h4>AI Insight</h4>
+        <p>Optimizing recommendations based on your schedule.</p>
       </div>
     </div>
 
-    <div class="buttons">
-      <button class="no" onclick="swipe(false)">✖</button>
-      <button class="yes" onclick="swipe(true)">❤</button>
-    </div>
-
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="panel">
-    <h3>Your Activity</h3>
-
-    <p>❤️ Liked: <span id="liked-count">0</span></p>
-    <p>❌ Passed: <span id="passed-count">0</span></p>
-
-    <div class="saved">
-      <h4>Saved Clubs</h4>
-      <ul id="saved-list"></ul>
-    </div>
-
-    <div class="panel-box">
-      <h4>🔥 Trending AI Insight</h4>
-      <p>AI Clubs are trending among students this week.</p>
-    </div>
   </div>
 
 </div>
