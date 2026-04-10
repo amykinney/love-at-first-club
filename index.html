@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<!-- TOP NAVBAR -->
+<!-- NAVBAR -->
 <div class="navbar">
   <div class="logo">ClubMatch AI</div>
 
@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<!-- MAIN LAYOUT -->
+<!-- LAYOUT -->
 <div class="layout">
 
   <!-- SIDEBAR -->
@@ -32,9 +32,9 @@
 
     <ul>
       <li>🏠 Home</li>
-      <li>🔥 Trending Clubs</li>
-      <li>❤️ Your Matches</li>
-      <li>📌 Saved Clubs</li>
+      <li>🔥 Trending</li>
+      <li>❤️ Matches</li>
+      <li>📌 Saved</li>
       <li>⚙️ Settings</li>
     </ul>
 
@@ -45,19 +45,29 @@
     </div>
   </div>
 
-  <!-- MAIN FEED -->
+  <!-- MAIN -->
   <div class="main">
 
     <div class="header">
       <h1>Find Your Next Club Match</h1>
-      <p>AI-powered recommendations (demo wireframe)</p>
+      <p>AI-powered recommendations (wireframe demo)</p>
     </div>
 
-    <!-- CARD -->
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search clubs..." oninput="filterClubs()">
+
+      <div class="filters">
+        <button onclick="setFilter('All')">All</button>
+        <button onclick="setFilter('Technology')">Tech</button>
+        <button onclick="setFilter('Recreation')">Recreation</button>
+        <button onclick="setFilter('Creative')">Creative</button>
+      </div>
+    </div>
+
     <div class="card" id="card">
       <img id="club-image" src="" />
 
-      <div class="match-badge" id="match">AI Match: 95%</div>
+      <div class="match-badge" id="match">AI Match</div>
 
       <div class="card-content">
         <h2 id="club-name"></h2>
@@ -74,10 +84,13 @@
           <h4>AI Insight</h4>
           <p id="ai-reason"></p>
         </div>
+
+        <button class="ai-btn" onclick="explainMatch()">
+          Ask AI: Why this match?
+        </button>
       </div>
     </div>
 
-    <!-- BUTTONS -->
     <div class="buttons">
       <button class="no" onclick="swipe(false)">✖</button>
       <button class="yes" onclick="swipe(true)">❤</button>
@@ -98,8 +111,8 @@
     </div>
 
     <div class="panel-box">
-      <h4>AI Summary</h4>
-      <p>We’re optimizing recommendations based on your swipes.</p>
+      <h4>🔥 Trending AI Insight</h4>
+      <p>AI Clubs are trending among students this week.</p>
     </div>
   </div>
 
